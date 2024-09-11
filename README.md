@@ -4,5 +4,5 @@ Repositório voltado para gerenciamento dos projetos da disciplina SEL0614 - Apl
 
 Grupo:
 
-Lucas Corlete ALves de Melo  13676461
+Lucas Corlete ALves de Melo  13676461  
 Guilherme Lorete Schmidt  13676857
