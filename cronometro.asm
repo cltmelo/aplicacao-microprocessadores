@@ -4,7 +4,7 @@ org 0000h
 jmp main
 ; mudar origem para a posicao do interruptor de clock 
 org 000Bh
-; jump paar funcao de interrupção
+; jump para função de interrupção
 jmp interrompe
 
 org 0032h
@@ -26,23 +26,6 @@ main:
 ;loop para aguardar interrupções
 wait:
 	LJMP wait
-
-; função para atualizar o valor de r0 e colocá-lo no display
-atualiza:
-	; incrementar r0 
-	INC R0
-
-	; se for 10 deve voltar a 0
-	CJNE R0, #0Ah, prossegue
-	MOV R0, #0
-
-	prossegue:
-
-	; saída para o display
-	ACALL display
-	
-	; retorna à posição anterior da stack
-	RET
 
 ; roda a cada interrupção, devendo rodar 4 vezes antes de incrementar o display
 ; totaliza 3 * 65535 + 53392 = 250000 ciclos antes de incrementar
@@ -96,6 +79,23 @@ checa_switch:
 	
 	; finaliza se não houver switch setado ou switch 1 setado e r1 diferente de 0
 	finaliza:
+	RET
+
+; função para atualizar o valor de r0 e colocá-lo no display
+atualiza:
+	; incrementar r0 
+	INC R0
+
+	; se for 10 deve voltar a 0
+	CJNE R0, #0Ah, prossegue
+	MOV R0, #0
+
+	prossegue:
+
+	; saída para o display
+	ACALL display
+	
+	; retorna à posição anterior da stack
 	RET
 
 ; passa numero no registrador r0 ao display
