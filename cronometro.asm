@@ -56,7 +56,8 @@ interrompe:
 	; se ACC não for zero, passa à impressão do display
 	JNZ imprime
 
-	; se acc for diferente de 0, coloca 53392 no timer para aguardar nova interrupção
+	; se acc for diferente de 0, coloca 12158 no timer para aguardar nova interrupção
+	; em 53392 ciclos
 	MOV TH0, #02Fh
 	MOV TL0, #07Eh
 	MOV R6, #1 ; não é mais zero, permite impressão na próxima interrupção
