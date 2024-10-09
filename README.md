@@ -18,7 +18,7 @@ Finalizando isso, retorna-se da interrupção e continua-se no loop infinito da 
 
 O esquemático abaixo mostra como os 8 bits da porta 1 se ligam ao display de 7 segmentos, justificando os códigos empregdos para sua ativação. 
 
-![Logic Diagram](https://github.com/cltmelo/aplicacao-microprocessadores/blob/main/Logic%20Diagram.png))
+![Logic Diagram](https://github.com/cltmelo/aplicacao-microprocessadores/blob/main/Logic%20Diagram.png)
 
 ## Integrantes
 - Lucas Corlete ALves de Melo - 13676461  
