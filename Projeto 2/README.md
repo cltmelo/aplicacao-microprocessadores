@@ -1,7 +1,7 @@
 # Projeto 2 - Cronômetro Digital com Timer e Interrupções
 
 ## Repositório
-Este repositório contém tanto o arquivo de simulação `circuito.simu`, do circuito construído no SimulIDE, quanto os arquivos `Projeto2.c` e `Projeto2.hex`, do programa desenvolvido e compilado no MikroC.
+Este repositório contém tanto o arquivo de simulação `circuito.simu` do circuito construído no SimulIDE quanto os arquivos `Projeto2.c` e `Projeto2.hex` do programa desenvolvido e compilado no MikroC.
 
 ## Funcionamento do Programa
 
