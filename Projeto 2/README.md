@@ -1,24 +1,33 @@
-# Projeto 1 - Cronômetro Digital usando Assembly e 8051
+# Projeto 2 - Cronômetro Digital com Timer e Interrupções
 
 ## Repositório
-Este repositório contem o arquivo principal do programa desenvolvido: `cronometro.asm`. Além disso, traz-se uma breve descrição de seu modo de funcionamento.
+Este repositório contém tanto o arquivo de simulação `circuito.simu`, do circuito construído no SimulIDE, quanto os arquivos `Projeto2.c` e `Projeto2.hex`, do programa desenvolvido e compilado no MikroC.
 
 ## Funcionamento do Programa
-O primeiro ato do programa constitui em escrever em registradores especiais para ativar o timer e habilitar que ele realize interrupções sempre que o timer alcançar seu valor máximo de 16 bits, divididos em dois registradores: TH0 e TL0. São essas interrupções geradas pelo timer que serão utilizadas para a contagem do tempo decorrido e que permitirão o funcionamento do cronômetro. Cada interrupção ocorrerá a cada 65535 ciclos de máquina, quando o timer atinge seu valor máximo e retorna a 0.
 
-Sendo assim, o programa segue definindo valores iniciais para registradores auxiliares para contagem de interrupções, contagem do display do cronômetro, etc, e entra, por fim, em um loop infinito, onde seu único objetivo é gastar ciclos de máquina e causar interrupções pelo timer.
+O programa desenvolvido faz uso de diversas funcionalidades do microcontrolador PIC18F4550, destacando-se o uso de timers internos e interrupções externas.
 
-Portanto, quando um interrupção é chamada, a execução passa à função `interrompe`, a qual retorna imediatamente nas duas primeiras interrupções. Já na terceira, ela move o valor de 12158 para o timer, de forma que aguarde então mais um interrupção, totalizando 3 * 65536 + 53392 = 250000 ciclos de máquina gastos até este momento, ou seja, 0,25 segundos gastos. Portanto, tendo aguardado o tempo necessário para incrementar o cornômetro, nesta quarta interrupção é chamada a função `imprime`.
+Sendo assim, iniciemos uma análise minuciosa do programa desenvolvido. Iniciando na função `main`, seu primeiro chamado trata-se da função `ConfigMCU`, responsável por configurar as portas do microcontrolador. Inicialmente, as portas são definidas como digitais através do registrodor `ADCON1`, e os resistores de pull-up internos são ativados por meio do registrador `INTCON2`. A seguir, a porta D é definida como saída por meio do registrador `TRISD` e assume o valor inicial de 0, tratando-se do local onde será conectado o display de 7 segmentos. Por fim, os pinos RB0 e RB1 são definidos como entradas e o valor da porta A é definido de forma a ligar o display no kit EasyPIC.
 
-A função imprime redefine os registradores utilizados na contagem de interrupções e chama a função `checa_switch`, cujo objetivo é checar se o SW0 ou SW1 estão ativos e controlar o cronômetro de acordo. Caso SW0 esteja ativo, é chamada a função `atualiza`, a qual incrementa o valor no registrador armazenando o valor do display e atualiza o valor no display. Caso SW1 esteja ativo, é decrementado um registrador que conta 4 chamadas à função antes de permitir que a função `atualiza` seja invocada, garantido um delay de 1 segundo entre atualizações.
+Seguindo-se à configuração das portas, é chamada a função `ConfigInterrupts`, ativando e configurando as interrupções relevantes ao programa. Sendo assim, a flag `GIEH` do registrador `INTCON` é acessada de forma a habilitar o uso de interrupções, continuando ao habilitar os níveis de prioridade através da flag `IPEN` do registrador `RCON`. Prosseguindo, as flags `INT0IE` e `INT1IE` dos registradores `INTCON` e `INTCON3`, respectivamente, têm seu valor definido de forma a habilitar as interrupções INT0 e INT1, relacionadas às portas RB0 e RB1. De forma similar, as flags de interrupação `INT0IF` e `INT1IF` desses mesmos registradores são inicialmente definidas como 0 (desativadas). Quanto ao momento de ativação, as flags `INTEDG0` e `INTEDG1` do registrador `INTCON2` são definidas de forma que as respectivas interrupções sejam ativadas na borda de subida, ou seja, ao soltar o botão na configuração pull-up utilizada. Finalizando a configuração de interrupções externas, a prioridade da interrupção INT1 é definida como alta através da flag `INT1IP` do registrador `INTCON3` (note que a interrupção INT0 é de prioridade alta por padrão). Por fim, habilita-se a interrupção relativa ao timer TMR0 através da flag `TMR0IE` do registrador `INTCON`.
 
-É importante destacar que a função `atualiza` também deve reiniciar o valor no registrador de contagem quando este atingir 10. Por sua vez, determinado o valor correto a expor, ela chama a função `display` que constitui em uma grande lista de testes, checando se o valor do display corresponde a cada um entre 0 e 9, e move o código de 8 bits correspondente ao seu formato para a porta 1, de forma a acender os leds corretos do display de 7 segmentos.
+Continuando com as preparações, agora configura-se o timer TMR0 do microcontrolador. Primeiramente, o registrador `T0CON` é definido com as configurações gerais do timer, ativando seu prescaler, colocando-o no modo 16 bits, empregando clock interno, incrementando na borda de subida do clock e inicialmente desligado (o valor de prescaler não é relevante no momento). Note que a flag de overflow também é inicialmente definida como 0. A seguir, o valor inicial do timer é definido como 0x0BDC, ou 3036, o que nos dá 65536 - 3036 = 62500 incrementos antes de overflow no timer. Sendo assim, ao considerar um intervalo de 0.5 microssegundos para um ciclo de clock, vemos que um prescaler de 32 nos dá 0.5 * 32 * 62500 = 1 000 000 microssegundos (1 segundo) até overflow, enquanto um prescaler de 8 promove 0.5 * 8 * 62500 = 250 000 microssegundos (0.25 segundo) até o overflow, sendo estes os dois períodos de tempo desejados para o incremento do valor no display de 7 segmentos.
 
-Finalizando isso, retorna-se da interrupção e continua-se no loop infinito da main, gastando ciclos até uma nova interrupção.
+Portanto, como último comando da `main`, temos um loop infinito, de forma que o programa permanecerá nele até uma interrupção. Prosseguindo então para o modo como o programa lida com interrupções, iniciemos pela interrupção do TMR0: quando a interrupção for chamada, a flag é novamente desativada e o valor inicial do timer é redefinido para 0x0BDC, finalizando com o chamado da função `Incrementa`, a qual incrementa o contador interno do programa (reiniciando ao chegar em 9) e configura a porta D de forma que o display de 7 segmentos mostre o número no contador (cada pino corresponde a um segmento do display, bastando configurá-lo como ligado ao desligado conforme o número a ser mostrado). A seguir, temos a interrupção INT0, que além de redefinir sua flag também configura o prescaler do TMR0 para 32, tornando a contagem total do timer 1 segundo, e ativa o timer. Por fim, a interrupção INT1 redefine sua própria flag e configura o prescaler do TMR0 para 8, tornando a contagem total 0.25 segundo, como já discutido, também ativando o timer.
 
-O esquemático abaixo mostra como os 8 bits da porta 1 se ligam ao display de 7 segmentos, justificando os códigos empregdos para sua ativação. 
+## Integração com o circuito
 
-![Logic Diagram](https://github.com/cltmelo/aplicacao-microprocessadores/blob/main/Logic%20Diagram.png)
+A figura abaixo demonstra o circuito geral construído. Note que os pinos da porta D são conectados ordenadamente ao display de 7 segmentos, de forma que o microcontrolador possa mostrar seu contador interno conforme as especificações desejadas. Observe também que os botões conectados aos pinos RB0 e RB1 são responsáveis pelas interrupções INT0 e INT1, respectivamente, e que empregam os resistores de pull-up internos ao microcontrolador.
+
+imagem aqui
+
+## Comparações entre implementações
+
+Vantagens:
+- A escrita de um programa em linguagem C é muito mais simples e direta quando comparada a um programa em assembly.
+
+Desvantagens:
+- Para o emprego de interrupções, é necessário configurar um grande número de registradores, necessitando de um estudo aprofundado do Data Sheet do microcontrolador.
 
 ## Integrantes
 - Lucas Corlete ALves de Melo - 13676461  
