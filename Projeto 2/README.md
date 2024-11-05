@@ -35,7 +35,7 @@ Vantagens:
 - A linguagem C, por ser de alto nível, possui uma sintaxe muito mais intuitiva e fácil de aprender, que resulta numa facilidade maior na leitura, escrita e manutenção do código. A adaptabilidade também é uma vantegm a ser considerada, já que permite que o código seja adaptado para outro microcontroladores com menos esforço. A vasta gama de bibliotecas, quando usadas, acelera significativamente o processo de desenvolvimento.
   
 Desvantagens:
-- A linguagem C peca em questão de eficiencia em termos de tamanho e velocidade de execução quando comparado ao assembly. Também há uma complexidade muito maior do compilador, podendo exigir mais recursos do microcontrolador. Além disso, sendo de alto nível, C não permite um controle tão preciso sobre o hardware quanto o assembly.
+- A linguagem C peca em questão de eficiencia em termos de tamanho e velocidade de execução quando comparado ao assembly. Também há uma complexidade muito maior do compilador, podendo exigir mais recursos do microcontrolador. Além disso, sendo de alto nível, C não permite um controle tão preciso sobre o hardware quanto o assembly. Outra desvantagem é que para o emprego de interrupções, é necessário configurar um grande número de resgistradores, necessitando de um estudo aprofundado do Data Sheet do microcontrolador.
 
 ## Integrantes
 - Lucas Corlete ALves de Melo - 13676461  
