@@ -19,7 +19,7 @@ Portanto, como último comando da `main`, temos um loop infinito, de forma que o
 
 A figura abaixo demonstra o circuito geral construído. Note que os pinos da porta D são conectados ordenadamente ao display de 7 segmentos, de forma que o microcontrolador possa mostrar seu contador interno conforme as especificações desejadas. Observe também que os botões conectados aos pinos RB0 e RB1 são responsáveis pelas interrupções INT0 e INT1, respectivamente, e que empregam os resistores de pull-up internos ao microcontrolador.
 
-imagem aqui
+![Circuito](https://github.com/cltmelo/aplicacao-microprocessadores/blob/main/Projeto%202/figura.png)
 
 ## Comparações entre implementações
 
