@@ -32,11 +32,12 @@ A figura abaixo demonstra o circuito geral construído. Note que os pinos da por
 ## Comparações entre implementações
 
 Vantagens:
-- A escrita de um programa em linguagem C é muito mais simples e direta quando comparada a um programa em assembly.
-
+- A linguagem C, por ser de alto nível, possui uma sintaxe muito mais intuitiva e fácil de aprender, que resulta numa facilidade maior na leitura, escrita e manutenção do código. A adaptabilidade também é uma vantegm a ser considerada, já que permite que o código seja adaptado para outro microcontroladores com menos esforço. A vasta gama de bibliotecas, quando usadas, acelera significativamente o processo de desenvolvimento.
+  
 Desvantagens:
-- Para o emprego de interrupções, é necessário configurar um grande número de registradores, necessitando de um estudo aprofundado do Data Sheet do microcontrolador.
+- A linguagem C peca em questão de eficiencia em termos de tamanho e velocidade de execução quando comparado ao assembly. Além disso, há uma complixidade muito maior do compilador, podendo exigir mais recursos do microcontrolador.
 
 ## Integrantes
 - Lucas Corlete ALves de Melo - 13676461  
 - Guilherme Lorete Schmidt - 13676857
+- João Victor Breches Alves - 13677142
