@@ -54,6 +54,7 @@ void ConfigMCU() {
 	TRISB.RB0 = 1; // Pino RB0/INT0 como entrada
 	TRISB.RB1 = 1; // Pino RB1/INT1 como entrada
 
+        TRISA = 0; // definir porta A como saída
 	PORTA = 0b00001111; // liga o display de 7 segmentos do kit
 }
 
