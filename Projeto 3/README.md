@@ -13,7 +13,7 @@ Inicialmente, modifica-se o registrador `ADCON0` de forma a configurar todos os 
 
 ### Configuração do ADC
 
-Além das tensões de referência externas já definidas, outros aspectos do conversor devem ser também configurados. Começamos por definir o registrador `ADCON2` para que as medidas do ADC sejam justificadas à direita, para que o clock de conversão seja FOSC / 32, e para que o tempo de conversão seja 12 TAD. A seguir, o ADC é inicializado através da função `ADC_Init_Advanced()` com o argumento `_ADC_EXTERNAL_VREFH`, de forma que ele empregue uma tensão de referência externa.
+Além das tensões de referência externas já definidas, outros aspectos do conversor devem ser também configurados. Começamos por definir o registrador `ADCON2` para que as medidas do ADC sejam justificadas à direita, para que o clock de conversão seja FOSC / 32, e para que o tempo de conversão seja 12 TAD. A seguir, o ADC é inicializado através da função `ADC_Init_Advanced()` com o argumento `_ADC_EXTERNAL_REF`, de forma que ele empregue tensões de referência externas.
 
 ### Configuração do LCD
 
