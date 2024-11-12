@@ -23,7 +23,7 @@ No início do código, diversos pinos da Porta B são configurados para comunica
 
 O loop principal do código consiste em empregar a função `ADC_Get_Sample(0)` para obter o valor resultante da conversão da entrada AN0 do ADC, convertê-lo em uma string em formato decimal por meio de uma série de divisões, e printar a string por meio da função `Lcd_Out()`, iniciando na posição previamente definida. Destaca-se que uma parte da saída visualizada no LCD ("Temp:") é permanente, resultante de uma única chamada de `Lcd_Out()` e nunca sobrescrita.
 
-Note especialmente que o valor medido pelo ADC é retornado em uma base de 10 bits. Concomitantemente, como o termômetro LM35 utilizado na análise apresenta variações de 10 mV / °C, sendo 1 V equivalente a 100 °C e 0 V a 0 °C. Sendo assim, para torná-lo representativo do valor real, devemos multiplicá-lo por 100 (na realidade, multiplicaremos por 1000 para aumentar a precisão) e dividí-lo por 1023. Somente a partir desse momento o valor obtido pode ser empregado na conversão para string.
+Note especialmente que o valor medido pelo ADC é retornado em uma base de 10 bits. Concomitantemente, o termômetro LM35 utilizado na análise apresenta variações de 10 mV / °C, sendo 1 V equivalente a 100 °C e 0 V a 0 °C. Sendo assim, para tornar o valor retornado pelo ADC representativo do valor real, devemos multiplicá-lo por 100 (na realidade, multiplicaremos por 1000 para aumentar a precisão) e dividí-lo por 1023. Somente a partir desse momento o valor obtido pode ser empregado na conversão para string.
 
 ## Integração com o circuito
 
