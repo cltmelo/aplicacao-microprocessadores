@@ -32,7 +32,7 @@ void main(){
   Lcd_Cmd(_LCD_CURSOR_OFF); // desliga cursor
   Lcd_Out(1,1,"Temp:"); // escreve na Linha x Coluna do LCD um texto padrão
 
-  ADC_Init_Advanced(_ADC_EXTERNAL_VREFH);  // inicializa módulo adc interno empregando uma tensão externa positiva de referência no pino VREF+
+  ADC_Init_Advanced(_ADC_EXTERNAL_REF);  // inicializa módulo adc interno empregando tensões externas de referência nos pinos VREF+ e VREF-
 
  while(1) {
     Valor_ADC = ADC_Get_Sample(0); // lê entrada no canal analógico 0
