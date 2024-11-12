@@ -20,6 +20,8 @@ void main(){
   unsigned int Valor_ADC = 0;  // var. para leitura
   unsigned char Tensao[10]; // arranjo textual para exibir no display
 
+  ADC_Init_Advanced(_ADC_EXTERNAL_REF);  // inicializa módulo adc interno empregando tensões externas de referência nos pinos VREF+ e VREF-
+  
   //lembrando que os pinos agora devem ser configurados como analógicos
   TRISA.RA0 = 1;
   ADCON0 = 0B00000001; // AN0 -> AD ligado, leitura deslig., canal AN0
@@ -31,8 +33,6 @@ void main(){
   Lcd_Cmd(_LCD_CLEAR); // limpa display
   Lcd_Cmd(_LCD_CURSOR_OFF); // desliga cursor
   Lcd_Out(1,1,"Temp:"); // escreve na Linha x Coluna do LCD um texto padrão
-
-  ADC_Init_Advanced(_ADC_EXTERNAL_REF);  // inicializa módulo adc interno empregando tensões externas de referência nos pinos VREF+ e VREF-
 
  while(1) {
     Valor_ADC = ADC_Get_Sample(0); // lê entrada no canal analógico 0
