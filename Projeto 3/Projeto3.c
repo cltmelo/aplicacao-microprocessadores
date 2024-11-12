@@ -23,7 +23,7 @@ void main(){
   //lembrando que os pinos agora devem ser configurados como analógicos
   TRISA.RA0 = 1;
   ADCON0 = 0B00000001; // AN0 -> AD ligado, leitura deslig., canal AN0
-  ADCON1 = 0B00010000; // configura todos os canais como ADC e utiliza a tensão de referência externa vref+
+  ADCON1 = 0B00110000; // configura todos os canais como ADC e utiliza a tensão de referência externa vref+
   ADCON2 = 0B10101010; // justificativa para direita, FOSC/32 (tempo entre 2 e 25 us)
 
   // Configuração do módulo LCD
@@ -47,10 +47,11 @@ void main(){
     Tensao[3] = '.';
     Tensao[4] = (Valor_ADC/1)%10 + '0';
     Tensao[5] = ' ';
-    Tensao[6] = 'C';
-    Tensao[7] = 0; // terminador NULL (ultima posição da matriz)
+    Tensao[6] = 0b11011111;
+    Tensao[7] = 'C';
+    Tensao[8] = 0; // terminador NULL (ultima posição da matriz)
 
-    // Exibir os valores na config. acima no display LCD:
+    // exibe os valores na configuração acima no display LCD:
     Lcd_Out(1,6,Tensao); // mostra os valores no display a partir da linha 1 e coluna 6
     Delay_ms(20);   // delay para atualizar display
   }
