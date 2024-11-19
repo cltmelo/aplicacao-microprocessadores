@@ -35,3 +35,4 @@ A figura abaixo demonstra o circuito geral construído. Note que os pinos da por
 - Lucas Corlete ALves de Melo - 13676461  
 - Guilherme Lorete Schmidt - 13676857
 - João Victor Breches Alves - 13677142
+- Daniel Dias Silva Filho - 13677114
