@@ -4,7 +4,7 @@
 Este repositório contém duas pastas, cada uma referente a um programa proposto no projeto 4 da disciplina de apliação em microprocessadores. Dentro de cada pasta há o arquivo `.ino` com o código fonte juntos das imagens dos resultados (que também serão apresentadas neste documento).
 
 ## Funcionamento dos Programas
-Para o primeiro programa, o arquivo `.ino` possui um código em C para o microcontrolador ESP32, configurado para, através da interação dos usuários com os botões e potenciômetro, seja ccontrolado um servo motor com dois modos: manual e automático. Um display OLED nos dá o retorno visual sobre os acontecimentos no sistema.
+Para o primeiro programa, o arquivo `.ino` possui um código em C para o microcontrolador ESP32, configurado para, através da interação dos usuários com os botões e potenciômetro, seja controlado um servo motor com dois modos: manual e automático. Um display OLED nos dá o retorno visual sobre os acontecimentos no sistema.
 
 Já para o segundo programa, um LED RGB é controlado usando PWM, ou modulação por largura de pulso. A intensidade de cada uma das três cores do RGB é definida por um duty cycle, que varia continuamente no intervalo.
 
@@ -57,8 +57,8 @@ Para o código `ESP-IDF`, temos: `ledc_timer_config()`, que configura o temporiz
 ![serial](<Programa 2/serial.png>)
 
 
-## Integrantes
-- Lucas Corlete ALves de Melo - 13676461  
+## Integrantes 
 - Guilherme Lorete Schmidt - 13676857
 - João Victor Breches Alves - 13677142
+- Lucas Corlete ALves de Melo - 13676461
 - Daniel Dias Silva Filho - 13677114
