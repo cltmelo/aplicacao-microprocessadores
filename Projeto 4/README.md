@@ -25,13 +25,13 @@ Para as funções, temos `setup()`, que inicializa os principais dispositivos do
 A função `loop()` acompanha as interações com botões e alterna entre os três modos possíveis do sistema. A `automaticMode()` faz o controle do servo no modo automático e a `manualMode()`faz o mesmo para o modo manual. `updateDisplayAndSerial()` faz a atualização do display e do serial para mostrar o modo atual em tempo real.
 
 ### Circuito 1 
-![wokwi](Projeto 4/Programa 1/circuito 1.png)
+![circuito 1](<Programa 1/circuito 1.png>)
 
 ### Serial no modo automático
-![wokwi](Projeto 4/Programa 1/Automático.png)
+![serial](<Programa 1/Automático.png>)
 
 ### Serial no modo Manual
-![wokwi](Projeto 4/Programa 1/Manual.png)
+![serial](<Programa 1/Manual.png>)
 
 
 ## Programa 2
@@ -51,10 +51,10 @@ No código `.ino` é utilizada a função já citada anteriormente `analogWrite(
 Para o código `ESP-IDF`, temos: `ledc_timer_config()`, que configura o temporizador PWM, `ledc_channel_config()`, que configura os canais PWM de cada cor e `ledc_set_duty()` que ajusta o ciclo de trabalho para cada cor.
 
 ### Circuito 2
-![wokwi](Projeto 4/Programa 2/circuito 2.png)
+![Circuito 2](<Programa 2/circuito 2.png>)
 
 ### Serial no modo automático
-![wokwi](Projeto 4/Programa 2/serial.png)
+![serial](<Programa 2/serial.png>)
 
 
 ## Integrantes
